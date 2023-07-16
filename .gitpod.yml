@@ -21,11 +21,9 @@ tasks:
       npm i &&
       php artisan key:generate &&
       php artisan migrate
-  - openMode: split-right
-    command: |
+  - command: >
       php -S 0.0.0.0:8000 -t public
     name: PHP Web Server
-  - openMode: split-right
-    command: |
+  - command: >
       npm run dev      
-    name: npm dev
+    name: NPM run dev
