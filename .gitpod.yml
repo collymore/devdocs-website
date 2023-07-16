@@ -24,6 +24,8 @@ tasks:
   - command: >
       php -S 0.0.0.0:8000 -t public
     name: PHP Web Server
+    openMode: tab-after
   - command: >
       npm run dev      
     name: NPM run dev
+    openMode: tab-after
