@@ -13,7 +13,7 @@ tasks:
   - init: >
       mysql -u root -e "create database homestead" &&
       cp .env.example .env &&
-      sed -i "s|APP_URL=|APP_URL=${GITPOD_WORKSPACE_URL}|g" .env &&
+      sed -i "s|APP_URL=http://localhost|APP_URL=${GITPOD_WORKSPACE_URL}|g" .env &&
       sed -i "s|APP_URL=https://|APP_URL=https://8000-|g" .env &&
       sed -i "s|DB_USERNAME=homestead|DB_USERNAME=root|g" .env &&
       sed -i "s|DB_PASSWORD=secret|DB_PASSWORD=|g" .env &&
@@ -21,7 +21,11 @@ tasks:
       npm i &&
       php artisan key:generate &&
       php artisan migrate
-    command: >
+  - openMode: split-right
+    command: |
       php -S 0.0.0.0:8000 -t public
-      npm run dev
-    
+    name: PHP Web Server
+  - openMode: split-right
+    command: |
+      npm run dev      
+    name: npm dev
