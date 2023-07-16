@@ -1,1 +1,1 @@
-.gitpod.Dockerfile
+FROM gitpod/workspace-mysql
