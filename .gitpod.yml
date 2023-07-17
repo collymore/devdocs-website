@@ -8,7 +8,6 @@ ports:
   # MySQL server
   - port: 3306
     onOpen: ignore
-
 tasks:
   - init: >
       mysql -u root -e "create database homestead" &&
@@ -23,9 +22,6 @@ tasks:
       php artisan migrate
   - command: >
       php -S 0.0.0.0:8000 -t public
-    name: PHP Web Server
-    openMode: tab-after
-  - command: >
-      npm run dev      
-    name: NPM run dev
-    openMode: tab-after
+      npm run dev --host $(gp url 5173)
+      env:
+          REDIRECT_HTTPS: 1
