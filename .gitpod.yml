@@ -20,11 +20,9 @@ tasks:
       npm i &&
       php artisan key:generate &&
       php artisan migrate
+      npm run dev --host $(gp url 5173)
   - name: PHP Webserver
     command: |
-        php -S 0.0.0.0:8000 -t public
-  - name: NPM run dev
-    command: >
-        npm run dev --host $(gp url 5173)
+        php -S 0.0.0.0:8000 -t public        
     env:
       REDIRECT_HTTPS: 1
