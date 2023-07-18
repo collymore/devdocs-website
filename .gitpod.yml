@@ -26,5 +26,5 @@ tasks:
   - name: NPM run dev
     command: >
         npm run dev --host $(gp url 5173)
-  env:
+    env:
       REDIRECT_HTTPS: 1
