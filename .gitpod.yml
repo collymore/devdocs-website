@@ -19,7 +19,7 @@ tasks:
       composer install --ignore-platform-reqs &&
       npm i &&
       php artisan key:generate &&
-      php artisan migrate
+      php artisan migrate &&
       npm run dev --host $(gp url 5173)
   - name: PHP Webserver
     command: |
