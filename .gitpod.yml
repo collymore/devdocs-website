@@ -9,7 +9,7 @@ ports:
   - port: 3306
     onOpen: ignore
 tasks:
-  - init: >
+  - init: |
       mysql -u root -e "create database homestead" &&
       cp .env.example .env &&
       sed -i "s|APP_URL=http://localhost|APP_URL=${GITPOD_WORKSPACE_URL}|g" .env &&
@@ -19,7 +19,9 @@ tasks:
       composer install --ignore-platform-reqs &&
       npm i &&
       php artisan key:generate &&
-      php artisan migrate &&
+      php artisan migrate
+  - name: NPM Run watch
+    command: |
       npm run dev --host $(gp url 5173)
   - name: PHP Webserver
     command: |
