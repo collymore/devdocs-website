@@ -24,7 +24,7 @@ tasks:
     command: |
         php -S 0.0.0.0:8000 -t public
   - name: NPM run dev
-    command: |
+    command: >
         npm run dev --host $(gp url 5173)
-    env:
-        REDIRECT_HTTPS: 1
+  env:
+      REDIRECT_HTTPS: 1
