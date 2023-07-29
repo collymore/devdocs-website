@@ -16,15 +16,15 @@ tasks:
       sed -i "s|DB_USERNAME=homestead|DB_USERNAME=root|g" .env &&
       sed -i "s|DB_PASSWORD=secret|DB_PASSWORD=|g" .env &&
       composer install --ignore-platform-reqs &&
-      npm i &&
-      php artisan key:generate &&
-      php artisan migrate
-  - name: NPM run dev
+      npm i
+  - name: Artisan Serve
     command:
-      mysql -u root -e "create database homestead" &&
-      npm run dev --host $(gp url 5173)
-  - name: PHP Webserver
+        php artisan key:generate &&
+        php artisan migrate &&
+        php artisan serve     
+  - name: Npm run dev
     command:
-        php artisan serve       
+        mysql -u root -e "create database homestead" &&
+        npm run dev --host $(gp url 5173)
     env:
       REDIRECT_HTTPS: 1
