@@ -9,7 +9,7 @@ ports:
   - port: 3306
     onOpen: ignore
 tasks:
-  - init: |
+  - init:
       cp .env.example .env &&
       sed -i "s|APP_URL=http://localhost|APP_URL=${GITPOD_WORKSPACE_URL}|g" .env &&
       sed -i "s|APP_URL=https://|APP_URL=https://8000-|g" .env &&
@@ -20,11 +20,11 @@ tasks:
       php artisan key:generate &&
       php artisan migrate
   - name: NPM run dev
-    command: |
+    command:
       mysql -u root -e "create database homestead" &&
       npm run dev --host $(gp url 5173)
   - name: PHP Webserver
-    command: |
-        php -S 0.0.0.0:8000 -t public        
+    command:
+        php artisan serve       
     env:
       REDIRECT_HTTPS: 1
